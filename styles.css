@@ -1,18 +1,10 @@
-:root{
-  /* Paleta Misc (oscura elegante) */
-  --bg: #0b0f14;        /* fondo base */
-  --bg2:#0f1620;        /* variación */
-  --text: #e9eef6;      /* texto principal */
-  --muted:#a6b0bf;      /* texto secundario */
-
-  --card-bg: rgba(255,255,255,.06);  /* tarjetas */
-  --border: rgba(255,255,255,.12);   /* bordes suaves */
-
-  /* Acento azul petróleo */
-  --accent: #7fb2ff;
-
-  /* Sombras */
-  --shadow: 0 10px 30px rgba(0,0,0,.45), 0 30px 90px rgba(0,0,0,.55);
+:root {
+  --bg: #1b1b1e;        /* fondo general, gris muy oscuro */
+  --card-bg: #242428;   /* fondo de las tarjetas */
+  --text: #e4e4e8;      /* texto principal, gris claro */
+  --muted: #9b9ba3;     /* texto secundario */
+  --border: #3a3a42;    /* bordes suaves */
+  --accent: #f5f5f5;    /* color de acento para botones */
 }
 
 *,
@@ -21,20 +13,13 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
   color: var(--text);
-
-  /* Fondo con profundidad (igual espíritu que misc) */
-  background:
-    radial-gradient(1200px 700px at 20% 0%, rgba(127,178,255,.18), transparent 60%),
-    radial-gradient(900px 600px at 80% 10%, rgba(127,178,255,.10), transparent 55%),
-    radial-gradient(1200px 900px at 40% 120%, rgba(255,255,255,.06), transparent 50%),
-    linear-gradient(180deg, var(--bg2), var(--bg));
 }
 
-/* Nav */
 .nav{
   display:flex;
   flex-wrap:wrap;
@@ -46,39 +31,34 @@ body{
 .navlink{
   color: var(--text);
   text-decoration: none;
-  opacity: .86;
+  opacity: .85;
 }
-.navlink:hover{
-  opacity: 1;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
+.navlink:hover{ opacity: 1; text-decoration: underline; }
 .sep{ opacity:.35; }
 
-a{
-  color: inherit;
-  text-decoration: none;
+a {
+    color: inherit;      /* Hereda el color del texto circundante */
+    text-decoration: none; /* Quita el subrayado */
 }
 
-.page{
+.page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3.25rem;
+  padding: 1.5rem 1.25rem 3rem;
 }
 
-.page-header{
+.page-header {
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.page-header h1{
+.page-header h1 {
   font-size: 1.8rem;
   font-weight: 500;
   margin: 0;
 }
 
-.intro{
+.intro {
   margin-top: 0.75rem;
   max-width: 70ch;
   font-size: 0.95rem;
@@ -87,94 +67,78 @@ a{
 }
 
 /* Galería responsive */
-.gallery{
+
+.gallery {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: 1fr; /* móvil */
-
+  grid-template-columns: 1fr; /* móvil: una columna */
   margin-top: 2rem;
-
-  /* FIX: evita que las sombras "muerdan" el footer */
-  padding-bottom: 2.5rem;
-
-  /* FIX: centrado visual del bloque */
-  justify-content: center;
 }
 
 /* Tablet: dos columnas */
-@media (min-width: 640px){
-  .gallery{
+@media (min-width: 640px) {
+  .gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 /* Escritorio ancho: tres columnas */
-@media (min-width: 1024px){
-  .gallery{
+@media (min-width: 1024px) {
+  .gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.card{
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+.card {
+  background: var(--card-bg);
   border-radius: 12px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
-  background-clip: padding-box;
-}
-
-.card:hover{
-  transform: translateY(-6px);
-  border-color: rgba(127,178,255,.28);
-  box-shadow: 0 14px 40px rgba(0,0,0,.55), 0 40px 120px rgba(0,0,0,.62);
 }
 
 /* Miniaturas verticales 3:4 aprox. */
-.card img{
+.card img {
   display: block;
   width: 100%;
-  height: 360px;       /* vertical 3:4 aprox. */
-  object-fit: cover;
-  border-bottom: 1px solid rgba(255,255,255,.10);
+  height: 360px;            /* vertical 3:4 aprox. */
+  object-fit: cover;        /* recorte elegante sin distorsión */
+  border-bottom: 1px solid var(--border);
 }
 
 /* Bloque de texto dentro de la tarjeta */
-.card figcaption{
+
+.card figcaption {
   padding: 0.9rem 1rem 1rem;
 }
 
-.card h2{
+.card h2 {
   font-size: 1rem;
   margin: 0 0 0.25rem;
   font-weight: 500;
 }
 
-.meta{
+.meta {
   font-size: 0.8rem;
   color: var(--muted);
   margin-bottom: 0.7rem;
 }
 
-.actions{
+.actions {
   margin-top: 0.4rem;
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
 }
 
-.button{
+.button {
   display: inline-block;
   font-size: 0.8rem;
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid var(--border);
   text-decoration: none;
   color: var(--text);
-  background: rgba(255,255,255,.04);
+  background: transparent;
   transition:
     background 0.15s ease,
     color 0.15s ease,
@@ -182,29 +146,19 @@ a{
     transform 0.1s ease;
 }
 
-.button:hover{
-  background: rgba(127,178,255,.18);
-  color: var(--text);
-  border-color: rgba(127,178,255,.38);
+.button:hover {
+  background: var(--accent);
+  color: #151518;
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 
-.button:focus-visible{
-  outline: 3px solid rgba(127,178,255,.35);
-  outline-offset: 2px;
-}
-
 /* Footer */
-.page-footer{
+
+.page-footer {
   margin-top: 2.5rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255,255,255,.12);
+  border-top: 1px solid var(--border);
   font-size: 0.8rem;
   color: var(--muted);
-
-  /* FIX: el footer queda por encima visualmente de sombras grandes */
-  position: relative;
-  z-index: 1;
 }
-
-
